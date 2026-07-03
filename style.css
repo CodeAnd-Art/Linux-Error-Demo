@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    width: 100%;
+    height: 100%;
     font-family: 'Courier New', monospace;
     background: #000;
     color: #fff;
     overflow: hidden;
+    touch-action: manipulation;
 }
 
 /* Menu Styles */
@@ -19,15 +22,26 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     padding: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .menu-container {
     text-align: center;
-    max-width: 600px;
+    max-width: 100%;
+    width: 100%;
 }
 
 .menu h1 {
     font-size: 2.5em;
+    margin-bottom: 5px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.menu h2 {
+    font-size: 1.8em;
     margin-bottom: 10px;
     color: #00ff00;
     text-shadow: 0 0 10px #00ff00;
@@ -40,27 +54,37 @@ body {
 }
 
 .subtitle {
-    font-size: 1.2em;
-    margin-bottom: 40px;
+    font-size: 1em;
+    margin-bottom: 30px;
     color: #888;
 }
 
 .button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding: 0 10px;
 }
 
 @media (max-width: 600px) {
     .button-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .menu h1 {
+        font-size: 1.8em;
+    }
+    
+    .menu h2 {
+        font-size: 1.3em;
     }
 }
 
 .crash-btn {
-    padding: 20px;
-    font-size: 1em;
+    padding: 15px 10px;
+    font-size: 0.95em;
     font-family: 'Courier New', monospace;
     border: 2px solid;
     background: rgba(0, 0, 0, 0.5);
@@ -71,6 +95,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .tecno-btn {
@@ -78,7 +103,7 @@ body {
     color: #ff6b6b;
 }
 
-.tecno-btn:hover {
+.tecno-btn:hover, .tecno-btn:active {
     background: rgba(255, 107, 107, 0.2);
     box-shadow: 0 0 20px #ff6b6b;
 }
@@ -88,7 +113,7 @@ body {
     color: #3ddc84;
 }
 
-.android-btn:hover {
+.android-btn:hover, .android-btn:active {
     background: rgba(61, 220, 132, 0.2);
     box-shadow: 0 0 20px #3ddc84;
 }
@@ -98,7 +123,7 @@ body {
     color: #ccc;
 }
 
-.ios-btn:hover {
+.ios-btn:hover, .ios-btn:active {
     background: rgba(85, 85, 85, 0.2);
     box-shadow: 0 0 20px #555;
 }
@@ -108,7 +133,7 @@ body {
     color: #1e90ff;
 }
 
-.bsod-btn:hover {
+.bsod-btn:hover, .bsod-btn:active {
     background: rgba(30, 144, 255, 0.2);
     box-shadow: 0 0 20px #1e90ff;
 }
@@ -118,7 +143,7 @@ body {
     color: #ffaa00;
 }
 
-.linux-btn:hover {
+.linux-btn:hover, .linux-btn:active {
     background: rgba(255, 170, 0, 0.2);
     box-shadow: 0 0 20px #ffaa00;
 }
@@ -129,23 +154,24 @@ body {
     grid-column: 1 / -1;
 }
 
-.all-btn:hover {
+.all-btn:hover, .all-btn:active {
     background: rgba(255, 0, 255, 0.2);
     box-shadow: 0 0 20px #ff00ff;
 }
 
 .info {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #ffaa00;
     background: rgba(255, 170, 0, 0.1);
-    padding: 15px;
+    padding: 12px;
     border-left: 3px solid #ffaa00;
     text-align: left;
     border-radius: 3px;
+    margin: 0 10px;
 }
 
 .info p {
-    margin: 5px 0;
+    margin: 4px 0;
 }
 
 /* Crash Screen */
@@ -160,7 +186,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .crash-screen.hidden {
@@ -172,30 +198,31 @@ body {
     height: 100%;
     padding: 20px;
     overflow-y: auto;
-    font-size: 0.9em;
-    line-height: 1.5;
+    font-size: 0.85em;
+    line-height: 1.4;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
 .close-btn {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
     background: rgba(255, 0, 0, 0.3);
     border: 2px solid #ff0000;
     color: #ff0000;
-    font-size: 1.5em;
+    font-size: 1.3em;
     cursor: pointer;
     border-radius: 5px;
     z-index: 1001;
     transition: all 0.3s ease;
     font-weight: bold;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.close-btn:hover {
+.close-btn:hover, .close-btn:active {
     background: rgba(255, 0, 0, 0.6);
     box-shadow: 0 0 20px #ff0000;
 }
@@ -219,7 +246,7 @@ body {
 .bsod-crash {
     color: #fff;
     background: #0000aa;
-    padding: 40px;
+    padding: 20px;
 }
 
 .linux-crash {
