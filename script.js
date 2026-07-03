@@ -1,270 +1,265 @@
-// Crash Screen Simulator
-const crashScreen = document.getElementById('crashScreen');
-const crashContent = document.getElementById('crashContent');
-const menu = document.getElementById('menu');
+// Crash Messages
+const crashMessages = {
+    tecno: [
+        "TECNO SPARK 30 BOOT ERROR",
+        "",
+        "System initialization failed...",
+        "Critical error detected in boot loader",
+        "",
+        "Error Code: 0xDEADBEEF",
+        "Device: TECNO Spark 30",
+        "OS: Android 11 Go Edition",
+        "",
+        "[FATAL] Kernel panic - not syncing",
+        "[FATAL] VFS: Unable to mount root fs on unknown-block(0,0)",
+        "",
+        "Attempting recovery...",
+        "Recovery failed!",
+        "",
+        "System will restart in 10 seconds...",
+        "9...",
+        "8...",
+        "7...",
+        "6...",
+        "5...",
+        "4...",
+        "3...",
+        "2...",
+        "1...",
+        "",
+        "RESTARTING..."
+    ],
+    
+    android: [
+        "ANDROID SYSTEM ERROR",
+        "",
+        "Unfortunately, the process com.android.systemui has stopped.",
+        "",
+        "[ OK ] Boot completed",
+        "[ OK ] System startup completed",
+        "[ERROR] Process crash detected",
+        "[ERROR] java.lang.RuntimeException:",
+        "[ERROR] Unable to start activity ComponentInfo",
+        "",
+        "Stack trace:",
+        "  at android.app.ActivityThread.performLaunchActivity",
+        "  at android.app.ActivityThread.handleLaunchActivity",
+        "  at android.app.ActivityThread.access$1100",
+        "",
+        "Force stopping package com.android.settings...",
+        "Restarting SystemUI...",
+        "",
+        "DEVICE WILL RESTART",
+        "REBOOTING IN 5 SECONDS..."
+    ],
+    
+    ios: [
+        "iOS CRITICAL ERROR",
+        "",
+        "An error has occurred. Try again later.",
+        "",
+        "Exception Type: KERN_INVALID_ADDRESS",
+        "Exception Codes: 0x0000000000000001, 0x0000000000000000",
+        "",
+        "Triggered by Thread: 0",
+        "",
+        "Last Exception Backtrace:",
+        "0   libobjc.A.dylib  0x00000001a69f0a90",
+        "1   libobjc.A.dylib  0x00000001a69f0b20",
+        "2   libsystem_kernel.dylib  0x00000001a66f0b20",
+        "3   CoreFoundation  0x00000001a72f0b20",
+        "",
+        "Attempting automatic restart...",
+        "",
+        "Hold down the top and volume down buttons",
+        "until the slider appears, then slide to power off.",
+        "",
+        "Device will restart in 8 seconds..."
+    ],
+    
+    bsod: [
+        "╔════════════════════════════════════════════════════════════╗",
+        "║                    SYSTEM ERROR OCCURRED                   ║",
+        "║                                                            ║",
+        "║  If this is the first time you've seen this stop error    ║",
+        "║  screen, restart your computer. If this screen appears    ║",
+        "║  again, follow these steps:                               ║",
+        "║                                                            ║",
+        "║  Check for problems and disable BIOS memory cache.        ║",
+        "║  Disable or remove newly installed hardware or software. ║",
+        "║  Disable BIOS caching or shadowing.                       ║",
+        "║  Run CHKDSK /F to check for hard drive corruption.        ║",
+        "║                                                            ║",
+        "║  Technical Information:                                    ║",
+        "║  *** STOP: 0x0000007E (0xFFFFFFFFC0000005,                ║",
+        "║             0xFFFFF880009A97D6, 0xFFFFF88000A01B68,        ║",
+        "║             0xFFFFF88000A01960)                            ║",
+        "║                                                            ║",
+        "║  *** DRIVER_IRQL_NOT_LESS_OR_EQUAL                        ║",
+        "║                                                            ║",
+        "║  If you disable or remove hardware/software, this stop    ║",
+        "║  error should not occur.                                   ║",
+        "║                                                            ║",
+        "║  If problems continue, disable or remove newly installed  ║",
+        "║  hardware or software.                                     ║",
+        "║                                                            ║",
+        "║  Disable BIOS memory cache.                                ║",
+        "║                                                            ║",
+        "║  Beginning dump of physical memory                         ║",
+        "║  Physical memory dump complete.                            ║",
+        "║  Contact your system administrator or technical group.    ║",
+        "╚════════════════════════════════════════════════════════════╝",
+        "",
+        "System will restart automatically in 15 seconds..."
+    ],
+    
+    linux: [
+        "[ 0.000000] Linux version 5.10.0-8-generic (root@kali)",
+        "[ 0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz root=/dev/sda1",
+        "[ 0.000000] KERNEL supported cpus:",
+        "[ 0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'",
+        "[ 0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'",
+        "[  OK  ] Started User Manager for UID 0.",
+        "[  OK  ] Reached target Sound Card.",
+        "[  OK  ] Reached target Multi-User System.",
+        "",
+        "FATAL ERROR DETECTED",
+        "=====================================",
+        "[KERNEL PANIC] segfault at 0 ip 0x7ffff7a2 sp 0x7ffffffde2e0 error 6",
+        "BUG: unable to handle page fault for address: 0xdeadbeef",
+        "PF_FLAGS=0x10",
+        "RIP: 0010:[<ffffffff810a5e3f>]",
+        "RSP: 0018:ffff88007d41db40  EFLAGS: 00010206",
+        "RAX: ffff880000000000 RBX: 0000000000000001 RCX: 0000000000000000",
+        "RDX: 0000000000000001 RSI: 000000007fffffff RDI: 0000000000000000",
+        "",
+        "Kernel panic - not syncing: Attempted to kill init!",
+        "CPU: 0 PID: 1 Comm: init Not tainted 5.10.0-8-generic",
+        "Call Trace:",
+        " dump_stack+0x6d/0x8b",
+        " panic+0x101/0x2e3",
+        " do_exit.cold+0x5f/0x65",
+        " do_group_exit+0x35/0xc0",
+        " get_signal+0x15b/0x850",
+        " arch_do_signal_or_restart+0x3d/0x720",
+        " exit_to_user_mode_prepare+0x124/0x130",
+        "",
+        "Kernel Offset: disabled",
+        "CPU features:   CPUID",
+        "---[ end Kernel panic ]---",
+        "",
+        "System halted."
+    ]
+};
 
+// Start crash simulation
 function startCrash(type) {
-    menu.style.display = 'none';
+    const crashScreen = document.getElementById('crashScreen');
+    const crashContent = document.getElementById('crashContent');
+    
     crashScreen.classList.remove('hidden');
     crashContent.innerHTML = '';
+    crashContent.className = '';
     
     if (type === 'all') {
         playAllCrashes();
-    } else if (type === 'tecno') {
-        playTecnoCrash();
-    } else if (type === 'android') {
-        playAndroidCrash();
-    } else if (type === 'ios') {
-        playIOSCrash();
-    } else if (type === 'bsod') {
-        playBSOD();
-    } else if (type === 'linux') {
-        playLinuxPanic();
+    } else {
+        playCrash(type, crashMessages[type]);
     }
 }
 
-function closeCrash() {
-    crashScreen.classList.add('hidden');
-    menu.style.display = 'flex';
-    crashContent.innerHTML = '';
-}
-
-// Tecno Spark 30 Bootloop
-async function playTecnoCrash() {
-    crashContent.className = 'tecno-crash';
+// Play single crash
+function playCrash(type, messages) {
+    const crashContent = document.getElementById('crashContent');
+    crashContent.className = type + '-crash';
     
-    for (let i = 0; i < 3; i++) {
-        // Boot screen
-        crashContent.innerHTML = `
-__________________________________________________
-                    TECNO
-                Spark 30
-__________________________________________________
-
-              Powered by
-              ANDROID
-__________________________________________________
-        `;
-        await sleep(2000);
-        
-        // Bootloader
-        crashContent.innerHTML = `
-__________________________________________________
-              TECNO Spark 30
-__________________________________________________
-
-[    0.000000] Linux version 5.4.0 (built-in)
-[    0.123456] Initializing bootloader...
-[    0.234567] Loading kernel...
-[    0.567890] Starting Android system...
-
-__________________________________________________
-        `;
-        await sleep(2000);
-        
-        // Loading bar
-        crashContent.innerHTML = `
-                Starting System...
-
-        `;
-        
-        for (let p = 0; p <= 100; p += 5) {
-            const bar = '='.repeat(p / 5) + ' '.repeat(20 - p / 5);
-            crashContent.innerHTML = `
-                Starting System...
-
-        [${bar}] ${p}%
-            `;
-            await sleep(100);
+    let index = 0;
+    
+    const typeDelay = {
+        'tecno': 150,
+        'android': 120,
+        'ios': 100,
+        'bsod': 80,
+        'linux': 100
+    };
+    
+    const interval = setInterval(() => {
+        if (index < messages.length) {
+            crashContent.innerHTML += messages[index] + '\n';
+            crashContent.scrollTop = crashContent.scrollHeight;
+            index++;
+        } else {
+            clearInterval(interval);
         }
-        
-        await sleep(500);
-        
-        // Bootloop error
-        crashContent.innerHTML = `
-⚠ SYSTEM ERROR ⚠
-
-    Boot Loop Detected!
-  Sistem başlatılamıyor...
-  System cannot boot...
-
-__________________________________________________
-[ERROR] Failed to mount /system
-[ERROR] Kernel panic - not syncing
-[ERROR] Rebooting device in 5 seconds...
-__________________________________________________
-        `;
-        
-        for (let cd = 5; cd > 0; cd--) {
-            crashContent.innerHTML += `\n\nRebooting in ${cd}...`;
-            await sleep(1000);
-        }
-    }
-    
-    await sleep(1000);
-}
-
-// Android Crash
-async function playAndroidCrash() {
-    crashContent.className = 'android-crash';
-    
-    crashContent.innerHTML = `
-__________________________________________________
-
-            Unfortunately,
-       System UI has stopped
-
-__________________________________________________
-Process: com.android.systemui
-Error: Signal 11 (SIGSEGV)
-
-__________________________________________________
-
-                    [OK]
-__________________________________________________
-    `;
-    
-    await sleep(4000);
-}
-
-// iOS Error
-async function playIOSCrash() {
-    crashContent.className = 'ios-crash';
-    
-    crashContent.innerHTML = `
-__________________________________________________
-
-            An error occurred.
-    You'll need to restart your device.
-
-__________________________________________________
-
-              Recovery Mode
-
-    Press and hold the top button and
-         volume down button together.
-
-              Error Code: 0xE8000015
-
-__________________________________________________
-    `;
-    
-    await sleep(5000);
-}
-
-// Windows BSOD
-async function playBSOD() {
-    crashContent.className = 'bsod-crash';
-    crashContent.innerHTML = '';
-    
-    const bsodText = `
-:::::::::::::::::::::::::::::::::::::::::::::::::::::
-A PROBLEM HAS BEEN DETECTED AND WINDOWS HAS BEEN SHUT DOWN
-TO PREVENT DAMAGE TO YOUR COMPUTER.
-
-If this is the first time you've seen this stop error screen,
-restart your computer. If this screen appears again, follow
-these steps:
-
-Check to make sure any new hardware or software is properly
-installed. If this is a new installation, ask your hardware or
-software manufacturer for any Windows updates you might need.
-
-If problems continue, disable or remove any newly installed
-hardware or software. Disable BIOS memory options such as caching
-or shadowing.
-
-Technical information:
-*** DRIVER_IRQL_NOT_LESS_OR_EQUAL
-*** Address FB8000 base at FB8000, DateStamp 4f7f1b89 - myfault.sys
-
-Beginning dump of physical memory
-Dumping physical memory to disk: `;
-    
-    crashContent.innerHTML = bsodText;
-    
-    for (let p = 0; p <= 100; p += 5) {
-        crashContent.innerHTML = bsodText + `${p}%`;
-        await sleep(150);
-    }
-    
-    crashContent.innerHTML += `
-
-Physical memory dump complete.
-Contact your system administrator or technical support group for
-further assistance.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::::
-    `;
-    
-    await sleep(2000);
-}
-
-// Linux Kernel Panic
-async function playLinuxPanic() {
-    crashContent.className = 'linux-crash';
-    
-    crashContent.innerHTML = `
-==================================================
-KERNEL PANIC - not syncing: Attempted to kill init!
-==================================================
-
-[    0.000000] Linux version 5.4.0-42-generic
-[    0.123456] CPU: Intel(R) Core(TM) Processor
-[    0.234567] Memory: 2048M available
-[    1.567890] FATAL: No init found!
-[    1.678901] CPU: 0 PID: 1 Comm: systemd
-[    1.789012] Kernel panic - not syncing: VFS: Unable to mount root fs
-[    1.890123] CPU: 0 PID: 1 Comm: init
-[    2.000000] Call Trace:
-[    2.111111]  dump_stack+0x6d/0x8b
-[    2.222222]  panic+0xf3/0x2ec
-[    2.333333]  die+0x30c/0x350
-[    2.444444] Kernel Offset: 0x1000000 from 0xffffffff81000000
-[    2.555555] HALTED
-
-==================================================
-    `;
-    
-    await sleep(7000);
+    }, typeDelay[type] || 100);
 }
 
 // Play all crashes sequentially
-async function playAllCrashes() {
-    await playTecnoCrash();
-    await sleep(1000);
-    await playAndroidCrash();
-    await sleep(1000);
-    await playIOSCrash();
-    await sleep(1000);
-    await playBSOD();
-    await sleep(1000);
-    await playLinuxPanic();
-    await sleep(2000);
+function playAllCrashes() {
+    const crashScreen = document.getElementById('crashScreen');
+    const crashContent = document.getElementById('crashContent');
     
-    // Glitch effect
-    crashContent.className = 'glitch-crash';
-    const glitches = [
-        "█▀█ ░░░ ███\n█▄█ ░░░ █░░",
-        "╔═══════════╗\n║ ERROR ║\n╚═══════════╝",
-        "█░░ ERR:" + Math.random().toString(16).substr(2, 6),
-        "⚠ CRITICAL ERROR ⚠\n" + "█".repeat(40)
-    ];
+    const crashes = ['tecno', 'android', 'ios', 'bsod', 'linux'];
+    let crashIndex = 0;
     
-    crashContent.innerHTML = glitches[Math.floor(Math.random() * glitches.length)];
-    await sleep(2000);
-}
-
-// Helper function
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// Close with X key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'x' || e.key === 'X') {
-        if (!crashScreen.classList.contains('hidden')) {
-            closeCrash();
+    function playNext() {
+        if (crashIndex < crashes.length) {
+            crashContent.innerHTML = '';
+            crashContent.className = crashes[crashIndex] + '-crash';
+            
+            const messages = crashMessages[crashes[crashIndex]];
+            let lineIndex = 0;
+            
+            const interval = setInterval(() => {
+                if (lineIndex < messages.length) {
+                    crashContent.innerHTML += messages[lineIndex] + '\n';
+                    crashContent.scrollTop = crashContent.scrollHeight;
+                    lineIndex++;
+                } else {
+                    clearInterval(interval);
+                    
+                    // Wait before next crash
+                    setTimeout(() => {
+                        crashIndex++;
+                        playNext();
+                    }, 3000);
+                }
+            }, 80);
+        } else {
+            // All crashes done
+            setTimeout(() => {
+                crashContent.innerHTML += '\n\n=== ALL SYSTEMS CRASHED ===\n';
+                crashContent.innerHTML += 'Press X to exit\n';
+            }, 1000);
         }
     }
+    
+    playNext();
+}
+
+// Close crash screen
+function closeCrash() {
+    const crashScreen = document.getElementById('crashScreen');
+    crashScreen.classList.add('hidden');
+}
+
+// ESC tuşu ile kapat
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeCrash();
+    }
 });
+
+// Service Worker Register (for PWA)
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {
+        // SW registration optional
+    });
+}
+
+// Prevent zooming
+document.addEventListener('touchmove', (e) => {
+    if (e.scale !== 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
