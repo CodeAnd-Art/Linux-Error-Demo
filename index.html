@@ -2,41 +2,46 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>System Crash Simulator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Main Menu -->
     <div id="menu" class="menu">
         <div class="menu-container">
-            <h1>🖥️ SYSTEM CRASH SIMULATOR</h1>
+            <h1>🖥️ SYSTEM CRASH</h1>
+            <h2>SIMULATOR</h2>
             <p class="subtitle">Gerçekçi Sistem Çöküş Ekranları</p>
             
             <div class="button-grid">
                 <button class="crash-btn tecno-btn" onclick="startCrash('tecno')">
-                    📱 Tecno Spark 30
+                    📱 Tecno Spark
                 </button>
                 <button class="crash-btn android-btn" onclick="startCrash('android')">
-                    🤖 Android Crash
+                    🤖 Android
                 </button>
                 <button class="crash-btn ios-btn" onclick="startCrash('ios')">
-                    🍎 iOS Error
+                    🍎 iOS
                 </button>
                 <button class="crash-btn bsod-btn" onclick="startCrash('bsod')">
-                    💙 Windows BSOD
+                    💙 BSOD
                 </button>
                 <button class="crash-btn linux-btn" onclick="startCrash('linux')">
-                    🐧 Linux Panic
+                    🐧 Linux
                 </button>
                 <button class="crash-btn all-btn" onclick="startCrash('all')">
-                    ⚡ Hepsini Oynat
+                    ⚡ HEPSINI OYNAT
                 </button>
             </div>
             
             <div class="info">
-                <p>⚠️ <strong>Uyarı:</strong> Ekran çöküş simülasyonu başlayacak!</p>
-                <p>✖️ Çıkmak için sağ üst köşedeki <strong>X</strong> tuşuna basın</p>
+                <p>⚠️ Çöküş simülasyonu başlayacak!</p>
+                <p>✖️ Çıkmak için X tuşuna basın</p>
             </div>
         </div>
     </div>
