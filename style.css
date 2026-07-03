@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Menu Styles */
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 20px;
+}
+
+.menu-container {
+    text-align: center;
+    max-width: 600px;
+}
+
+.menu h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #00ff00; }
+    50% { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #888;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 600px) {
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.crash-btn {
+    padding: 20px;
+    font-size: 1em;
+    font-family: 'Courier New', monospace;
+    border: 2px solid;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tecno-btn {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.tecno-btn:hover {
+    background: rgba(255, 107, 107, 0.2);
+    box-shadow: 0 0 20px #ff6b6b;
+}
+
+.android-btn {
+    border-color: #3ddc84;
+    color: #3ddc84;
+}
+
+.android-btn:hover {
+    background: rgba(61, 220, 132, 0.2);
+    box-shadow: 0 0 20px #3ddc84;
+}
+
+.ios-btn {
+    border-color: #555;
+    color: #ccc;
+}
+
+.ios-btn:hover {
+    background: rgba(85, 85, 85, 0.2);
+    box-shadow: 0 0 20px #555;
+}
+
+.bsod-btn {
+    border-color: #1e90ff;
+    color: #1e90ff;
+}
+
+.bsod-btn:hover {
+    background: rgba(30, 144, 255, 0.2);
+    box-shadow: 0 0 20px #1e90ff;
+}
+
+.linux-btn {
+    border-color: #ffaa00;
+    color: #ffaa00;
+}
+
+.linux-btn:hover {
+    background: rgba(255, 170, 0, 0.2);
+    box-shadow: 0 0 20px #ffaa00;
+}
+
+.all-btn {
+    border-color: #ff00ff;
+    color: #ff00ff;
+    grid-column: 1 / -1;
+}
+
+.all-btn:hover {
+    background: rgba(255, 0, 255, 0.2);
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+.info {
+    font-size: 0.9em;
+    color: #ffaa00;
+    background: rgba(255, 170, 0, 0.1);
+    padding: 15px;
+    border-left: 3px solid #ffaa00;
+    text-align: left;
+    border-radius: 3px;
+}
+
+.info p {
+    margin: 5px 0;
+}
+
+/* Crash Screen */
+.crash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.crash-screen.hidden {
+    display: none;
+}
+
+.crash-content {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    background: rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 20px #ff0000;
+}
+
+/* Specific Crash Styles */
+.tecno-crash {
+    color: #fff;
+    background: #000;
+}
+
+.android-crash {
+    color: #3ddc84;
+    background: #000;
+}
+
+.ios-crash {
+    color: #ccc;
+    background: #000;
+}
+
+.bsod-crash {
+    color: #fff;
+    background: #0000aa;
+    padding: 40px;
+}
+
+.linux-crash {
+    color: #ff0000;
+    background: #000;
+}
+
+.glitch-crash {
+    color: #ff0000;
+    animation: glitch 0.2s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
