@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Crash Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="menu" class="menu">
+        <div class="menu-container">
+            <h1>🖥️ SYSTEM CRASH SIMULATOR</h1>
+            <p class="subtitle">Gerçekçi Sistem Çöküş Ekranları</p>
+            
+            <div class="button-grid">
+                <button class="crash-btn tecno-btn" onclick="startCrash('tecno')">
+                    📱 Tecno Spark 30
+                </button>
+                <button class="crash-btn android-btn" onclick="startCrash('android')">
+                    🤖 Android Crash
+                </button>
+                <button class="crash-btn ios-btn" onclick="startCrash('ios')">
+                    🍎 iOS Error
+                </button>
+                <button class="crash-btn bsod-btn" onclick="startCrash('bsod')">
+                    💙 Windows BSOD
+                </button>
+                <button class="crash-btn linux-btn" onclick="startCrash('linux')">
+                    🐧 Linux Panic
+                </button>
+                <button class="crash-btn all-btn" onclick="startCrash('all')">
+                    ⚡ Hepsini Oynat
+                </button>
+            </div>
+            
+            <div class="info">
+                <p>⚠️ <strong>Uyarı:</strong> Ekran çöküş simülasyonu başlayacak!</p>
+                <p>✖️ Çıkmak için sağ üst köşedeki <strong>X</strong> tuşuna basın</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crash Screen -->
+    <div id="crashScreen" class="crash-screen hidden">
+        <button class="close-btn" onclick="closeCrash()">✕</button>
+        <div class="crash-content" id="crashContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
